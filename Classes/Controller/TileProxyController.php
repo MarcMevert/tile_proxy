@@ -216,12 +216,11 @@ class TileProxyController extends ProxyController
     private function loadTileAndCacheIt(string $tileURL, string $cacheTileFile): bool
     {
         if (!file_exists(dirname($cacheTileFile))) {
-            @mkdir(dirname($cacheTileFile), 0777, true);
+            GeneralUtility::mkdir_deep(dirname($cacheTileFile));
         }
         $data = $this->loadTile($tileURL);
         if ($data) {
-            file_put_contents($cacheTileFile, $data);
-            return true;
+            return GeneralUtility::writeFile($cacheTileFile, $data);
         }
 
         return false;
