@@ -1,2 +1,4 @@
 name: codemacher/tile_proxy
 label: Tile Proxy
+dependencies:
+  - typo3/seo-sitemap
