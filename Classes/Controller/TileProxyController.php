@@ -59,11 +59,15 @@ class TileProxyController extends ProxyController
         if (count($bbox) != 4) {
             return true;
         }
-        $minTileX = LatLngToTile::lngToTileX(intval($bbox[0]), $z);
-        $maxTileX = LatLngToTile::lngToTileX(intval($bbox[2]), $z);
-        $minTileY = LatLngToTile::latToTileY(intval($bbox[3]), $z);
-        $maxTileY = LatLngToTile::latToTileY(intval($bbox[1]), $z);
-        return !(!LatLngToTile::inRange($x, $minTileX, $maxTileX) || !LatLngToTile::inRange($y, $minTileY, $maxTileY));
+        [$west, $south, $east, $north] = array_map('floatval', $bbox);
+
+        $minTileX = min(LatLngToTile::lngToTileX($west, $z),LatLngToTile::lngToTileX($east, $z));
+        $maxTileX = max(LatLngToTile::lngToTileX($west, $z),LatLngToTile::lngToTileX($east, $z));
+        $minTileY = min(LatLngToTile::latToTileY($north, $z),LatLngToTile::latToTileY($south, $z));
+        $maxTileY = max(LatLngToTile::latToTileY($north, $z),LatLngToTile::latToTileY($south, $z));
+
+        return LatLngToTile::inRange((float)$x, $minTileX, $maxTileX)
+            && LatLngToTile::inRange((float)$y, $minTileY, $maxTileY);
     }
 
 
