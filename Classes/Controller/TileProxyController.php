@@ -99,6 +99,8 @@ class TileProxyController extends ProxyController
         switch ($provider) {
             case "osm":
                 return "https://$s.tile.openstreetmap.org/$z/$x/$y.png";
+            case "osm_de":
+                return "https://tile.openstreetmap.de/$z/$x/$y.png";    
         }
         return "";
     }

@@ -14,7 +14,7 @@ use TYPO3\CMS\Core\Http\JsonResponse;
 abstract class ProxyController
 {
     protected StreamFactory $streamFactory;
-    public const VALID_TYPES = ["osm"];
+    public const VALID_TYPES = ["osm","osm_de"];
 
 
     public function __construct()
