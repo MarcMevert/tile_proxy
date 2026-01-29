@@ -1,5 +1,6 @@
 {
   "name": "codemacher/tile_proxy",
+  "version": "1.3.9",
   "description": "Integrates an OpenStreetMap tile proxy in TYPO3 for GDPR-compliant integration.",
   "type": "typo3-cms-extension",
   "homepage": "https://extensions.typo3.org/extension/tile_proxy",
